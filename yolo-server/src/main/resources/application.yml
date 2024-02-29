@@ -1,0 +1,19 @@
+server:
+  port: 8080
+spring:
+#  profiles:
+#    active: dev
+  main:
+    allow-circular-references: true
+  datasource:
+#    druid:
+#      driver-class-name: ${yolo.datasource.driver-class-name}
+#      url: jdbc:mysql://${yolo.datasource.host}:${yolo.datasource.port}/${yolo.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+#      username: ${yolo.datasource.username}
+#      password: ${yolo.datasource.password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    host: localhost
+    port: 3306
+    database: campus_errand
+    username: root
+    password: cjp

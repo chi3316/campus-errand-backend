@@ -1,0 +1,8 @@
+yolo:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    host: localhost
+    port: 3306
+    database: campus_errand
+    username: root
+    password: cjp
