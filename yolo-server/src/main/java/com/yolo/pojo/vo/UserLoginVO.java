@@ -14,7 +14,7 @@ import java.io.Serializable;
 public class UserLoginVO implements Serializable {
 
     private Long id;
-    private String openid;
-    private String token;
+    private String openid; //微信用户唯一标识
+    private String token; //jwt令牌
 
 }

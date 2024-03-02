@@ -1,0 +1,20 @@
+yolo:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    host: localhost
+    port: 3306
+    database: campus_errand
+    username: root
+    password: cjp
+  alioss:
+    endpoint: oss-cn-guangzhou.aliyuncs.com
+    access-key-id: LTAI5tGfx5fcWHz4kddV3wk9
+    access-key-secret: nKVEBXHIqZFbokqs3jjB7RCFcMhAG5
+    bucket-name: web-cjpdemo
+  redis:
+    host: localhost
+    port: 6379
+    database: 7
+  wechat:
+    secret: 257edb7f15d68ed405adc16e98ac0426
+    appid: wx9dbd4a4d8df6fcbd

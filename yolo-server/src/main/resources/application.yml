@@ -1,12 +1,15 @@
 server:
   port: 8080
 spring:
+  profiles:
+    active: dev
   datasource:
     druid:
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/campus_errand?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
-      username: root
-      password: cjp
+      driver-class-name: ${yolo.datasource.driver-class-name}
+      url: jdbc:mysql://${yolo.datasource.host}:${yolo.datasource.port}/${yolo.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      username: ${yolo.datasource.username}
+      password: ${yolo.datasource.password}
+
 
 mybatis:
 #  #mapper配置文件
@@ -15,3 +18,18 @@ mybatis:
   configuration:
     #开启驼峰命名
     map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+yolo:
+  jwt:
+    # 设置jwt签名加密时使用的秘钥
+    admin-secret-key: chichi
+    # 设置jwt过期时间
+    admin-ttl: 7200000
+    # 设置前端传递过来的令牌名称
+    admin-token-name: token
+    user-secret-key: itheima
+    user-ttl: 7200000
+    user-token-name: authentication
+  wechat:
+    appid: ${yolo.wechat.appid}
+    secret: ${yolo.wechat.secret}
