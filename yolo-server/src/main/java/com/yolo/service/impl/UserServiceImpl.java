@@ -54,6 +54,7 @@ public class UserServiceImpl implements UserService {
                     .build();
             userMapper.insert(user);
         }
+
         //为用户生成jwt令牌
         Map<String, Object> claims = new HashMap<>();
         claims.put(JwtClaimsConstant.USER_ID,user.getId());
