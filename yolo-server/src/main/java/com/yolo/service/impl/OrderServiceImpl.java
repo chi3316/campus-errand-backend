@@ -20,7 +20,6 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderMapper orderMapper;
     @Override
-    //TODO : 返回前端的日期格式有问题
     public PageResult pageQuery(int page, int pageSize, Integer status) {
         //获取用户id , 封装到DTO对象中
         OrdersPageQueryDTO ordersPageQueryDTO = new OrdersPageQueryDTO();

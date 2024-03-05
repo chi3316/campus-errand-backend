@@ -25,15 +25,13 @@ public class OrderVO {
     //接单人的id
     private Long ReceiverId;
     //下单时间
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime orderTime;
 
     //接单时间
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime takeTime;
 
     //完成时间
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss") //不生效，不知道为啥
     private LocalDateTime finishTime;
 
     //订单金额
