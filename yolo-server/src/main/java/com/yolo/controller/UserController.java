@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @Slf4j
@@ -31,10 +30,4 @@ public class UserController {
         return Result.success(userLoginVO);
     }
 
-    // No mapping for GET /user
-    @GetMapping("/category/list")
-
-    public Result list(Integer type) {
-        return Result.success();
-    }
 }

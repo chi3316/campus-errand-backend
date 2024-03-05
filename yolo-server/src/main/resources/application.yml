@@ -1,6 +1,9 @@
 server:
-  port: 8080
+  port: 8081
 spring:
+  # 允许循环引用
+  main:
+    allow-circular-references: true
   profiles:
     active: dev
   datasource:
