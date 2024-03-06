@@ -6,4 +6,15 @@
         insert into address_book (user_id, consignee, building, specific_location, is_default)
         VALUES(#{userId},#{consignee},#{building},#{specificLocation},#{is_default})
     </insert>
+    <select id="select" resultType="com.yolo.pojo.entity.AddressBook">
+        select * from address_book 
+        <where>
+            <if test="id != null">and id = #{id}</if>
+            <if test="userId != null">and userId = #{userId}</if>
+            <if test="consignee != null">and consignee = #{consignee}</if>
+            <if test="building != null">and building = #{building}</if>
+            <if test="specificLocation != null">and specific_location = #{specificLocation}</if>
+            <if test="isDefault != null">and is_default = #{isDefault}</if>
+        </where>
+    </select>
 </mapper>

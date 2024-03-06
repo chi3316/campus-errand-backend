@@ -7,6 +7,8 @@ import com.yolo.service.AddressBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AddressBookServiceImpl implements AddressBookService {
     //默认地址：1
@@ -23,7 +25,20 @@ public class AddressBookServiceImpl implements AddressBookService {
         addressBook.setUserId(BaseContext.getCurrentId());
         //addressBook.setUserId(2L); 测试用
         //添加的时候普通的地址，需要在这里设置is_default字段为0
-        addressBook.setIs_default(IS_NOT_DEFAULT);
+        addressBook.setIsDefault(IS_NOT_DEFAULT);
         addressBookMapper.insert(addressBook);
+    }
+
+    /**
+     * 列出所有地址信息
+     * @return
+     */
+    @Override
+    public List<AddressBook> list() {
+        Long userId = BaseContext.getCurrentId();
+        AddressBook addressBook = new AddressBook();
+        addressBook.setUserId(userId);
+        //封装成entity , mapper层更通用，提高扩展性
+        return addressBookMapper.select(addressBook);
     }
 }

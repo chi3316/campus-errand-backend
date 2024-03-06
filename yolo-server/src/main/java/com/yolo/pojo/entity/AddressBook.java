@@ -23,5 +23,5 @@ public class AddressBook {
     private String specificLocation;
 
     //默认地址 : 1 是 0否
-    private Integer is_default;
+    private Integer isDefault;
 }
