@@ -6,6 +6,16 @@
         insert into address_book (user_id, consignee, building, specific_location, is_default)
         VALUES(#{userId},#{consignee},#{building},#{specificLocation},#{is_default})
     </insert>
+    <update id="update">
+        update address_book
+        <set>
+            <if test="consignee != null">consignee = #{consignee},</if>
+            <if test="building != null">building = #{building},</if>
+            <if test="specificLocation != null">specific_location = #{specificLocation},</if>
+            <if test="isDefault != null">is_default = #{isDefault},</if>
+        </set>
+        where id = #{id}
+    </update>
     <select id="select" resultType="com.yolo.pojo.entity.AddressBook">
         select * from address_book 
         <where>

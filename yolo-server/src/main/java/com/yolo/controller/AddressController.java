@@ -23,7 +23,7 @@ public class AddressController {
      * @param addressBook
      * @return
      */
-    @PostMapping("/saveAddress")
+    @PutMapping("/save")
     @ApiOperation("添加地址 ")
     public Result addAddress(@RequestBody AddressBook addressBook) {
         log.info("新增地址：{}",addressBook);
@@ -35,10 +35,23 @@ public class AddressController {
      * 罗列用户的所以地址信息
      * @return
      */
-    @GetMapping("list")
+    @GetMapping("/list")
     @ApiOperation("查询所有地址信息")
     public Result<List<AddressBook>> list() {
+        log.info("请求查询所有地址信息");
         List<AddressBook> addressBooks = addressBookService.list();
         return  Result.success(addressBooks);
+    }
+
+    /**
+     * 根据id修改订单
+     * @param addressBook
+     * @return
+     */
+    @ApiOperation("更新地址")
+    @PostMapping("/update")
+    public Result updateAddress(@RequestBody AddressBook addressBook) {
+        addressBookService.update(addressBook);
+        return Result.success();
     }
 }

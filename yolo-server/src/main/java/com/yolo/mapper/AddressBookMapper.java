@@ -14,4 +14,6 @@ public interface AddressBookMapper {
     void insert(AddressBook addressBook);
 
     List<AddressBook> select(AddressBook addressBook);
+
+    void update(AddressBook addressBook);
 }

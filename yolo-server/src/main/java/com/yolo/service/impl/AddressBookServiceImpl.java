@@ -41,4 +41,13 @@ public class AddressBookServiceImpl implements AddressBookService {
         //封装成entity , mapper层更通用，提高扩展性
         return addressBookMapper.select(addressBook);
     }
+
+    /**
+     * 修改地址
+     * @param addressBook
+     */
+    @Override
+    public void update(AddressBook addressBook) {
+        addressBookMapper.update(addressBook);
+    }
 }
