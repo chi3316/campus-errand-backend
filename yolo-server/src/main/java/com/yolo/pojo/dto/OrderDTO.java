@@ -2,10 +2,11 @@ package com.yolo.pojo.dto;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Data
-public class OrderDTO {
+public class OrderDTO implements Serializable {
     //订单id
     private Long id;
 

@@ -8,4 +8,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface OrderMapper {
     Page<Order> pageQuery(OrdersPageQueryDTO ordersPageQueryDTO);
+
+    void insert(Order order);
 }

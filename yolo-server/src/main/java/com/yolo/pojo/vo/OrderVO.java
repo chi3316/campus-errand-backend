@@ -6,13 +6,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class OrderVO {
+public class OrderVO implements Serializable {
     private Long id;
 
     private String number;
@@ -24,6 +25,7 @@ public class OrderVO {
 
     //接单人的id
     private Long ReceiverId;
+
     //下单时间
     private LocalDateTime orderTime;
 
@@ -39,4 +41,5 @@ public class OrderVO {
 
     //备注
     private String remark;
+    //TODO : 应该把地址信息也返回
 }

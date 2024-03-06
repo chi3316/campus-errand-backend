@@ -21,8 +21,13 @@ public class Order {
     //下单用户id
     private Long userId;
 
-    //地址id
+    //用户的地址id
     private Long addressBookId;
+
+    private Long receiverId;
+
+    //快递站id
+    private Long expressStationId;
 
     //接单人的id
     private Long ReceiverId;
