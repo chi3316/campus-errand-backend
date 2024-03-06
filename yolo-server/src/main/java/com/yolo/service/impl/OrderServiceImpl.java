@@ -60,7 +60,7 @@ public class OrderServiceImpl implements OrderService {
             throw new AddressBookBusinessException(MessageConstant.ADDRESS_BOOK_IS_NULL);
         }
         //根据传进来的起点id , 终点id 来查询出地址的具体信息，并填充到order对象中
-        String destinationAddress = addressBook.getBuilding() + addressBook.getSpecificLocation();
+        String destinationAddress = addressBook.getBuilding() + " " + addressBook.getSpecificLocation();
 
         Order order = new Order();
         BeanUtils.copyProperties(orderSubmitDTO,order);

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yolo.mapper.AddressBookMapper">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into address_book (user_id, consignee, building, specific_location, is_default)
+        VALUES(#{userId},#{consignee},#{building},#{specificLocation},#{is_default})
+    </insert>
+</mapper>
