@@ -41,5 +41,11 @@ public class OrderVO implements Serializable {
 
     //备注
     private String remark;
-    //TODO : 应该把地址信息也返回
+
+    //起点
+    private String departureAddress;
+
+    //终点
+    private String destinationAddress;
+
 }

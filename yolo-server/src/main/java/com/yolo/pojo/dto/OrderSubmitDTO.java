@@ -13,8 +13,8 @@ public class OrderSubmitDTO implements Serializable {
     //用户的地址id，终点
     private Long addressBookId;
 
-    //快递站的id, 起点
-    private Long expressStationId;
+    //快递站的id, 起点 => 不要穿id , 直接给地址
+    private String departureAddress;
 
     //总金额
     private BigDecimal amount;

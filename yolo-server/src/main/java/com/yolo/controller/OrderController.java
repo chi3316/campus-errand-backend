@@ -10,10 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
@@ -34,6 +31,13 @@ public class OrderController {
         return Result.success(pageResult);
     }
 
+    /**
+     * 提交订单
+     * @param orderSubmitDTO
+     * @return
+     */
+    @PostMapping("/submit")
+    @ApiOperation("用户下单")
     public Result<OrderSubmitVO> orderSubmit(@RequestBody OrderSubmitDTO orderSubmitDTO) {
         log.info("用户提交订单：{}",orderSubmitDTO);
         OrderSubmitVO orderSubmitVO = orderService.submit(orderSubmitDTO);

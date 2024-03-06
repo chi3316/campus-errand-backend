@@ -3,6 +3,7 @@ package com.yolo.service.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.yolo.constant.MessageConstant;
+import com.yolo.constant.OrderStatusConstant;
 import com.yolo.context.BaseContext;
 import com.yolo.exception.AddressBookBusinessException;
 import com.yolo.mapper.AddressBookMapper;
@@ -58,17 +59,29 @@ public class OrderServiceImpl implements OrderService {
         if(addressBook == null) {
             throw new AddressBookBusinessException(MessageConstant.ADDRESS_BOOK_IS_NULL);
         }
+        //根据传进来的起点id , 终点id 来查询出地址的具体信息，并填充到order对象中
+        String destinationAddress = addressBook.getBuilding() + addressBook.getSpecificLocation();
+
         Order order = new Order();
         BeanUtils.copyProperties(orderSubmitDTO,order);
         order.setOrderTime(LocalDateTime.now());
         order.setNumber(String.valueOf(System.currentTimeMillis()));
+        //设置订单状态,用户id
+        order.setStatus(OrderStatusConstant.WAIT_FOR_HELP);
+        order.setUserId(BaseContext.getCurrentId());//TODO : 由于没有先登录，没办法从ThreadLocal中获取到user_id
+        order.setDestinationAddress(destinationAddress);
+
+
+
         //插入到订单表中
         orderMapper.insert(order);
         //将生成的订单id封装与下单时间封装到VO对象中，返回
         OrderSubmitVO orderSubmitVO = OrderSubmitVO.builder()
                 .id(order.getId())
-                .orderTime(LocalDateTime.now())
+                .orderTime(order.getOrderTime())
+                .title(order.getTitle())
                 .orderNumber(order.getNumber())
+                .orderAmount(order.getAmount())
                 .build();
         return orderSubmitVO;
     }

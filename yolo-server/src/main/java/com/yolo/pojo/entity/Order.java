@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
@@ -41,8 +42,14 @@ public class Order {
     private LocalDateTime finishTime;
 
     //订单金额
-    private Double amount;
+    private BigDecimal amount;
 
     //备注
     private String remark;
+
+    //起点
+    private String departureAddress;
+
+    //终点
+    private String destinationAddress;
 }
