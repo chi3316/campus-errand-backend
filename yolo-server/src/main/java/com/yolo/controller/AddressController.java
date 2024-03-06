@@ -51,7 +51,21 @@ public class AddressController {
     @ApiOperation("更新地址")
     @PostMapping("/update")
     public Result updateAddress(@RequestBody AddressBook addressBook) {
+        log.info("修改订单：{}",addressBook);
         addressBookService.update(addressBook);
+        return Result.success();
+    }
+
+    /**
+     * 删除订单
+     * @param id
+     * @return
+     */
+    @ApiOperation("根据id删除地址")
+    @DeleteMapping("/delete")
+    public Result deleteAddress(Long id) {
+        log.info("删除id为{}的地址" , id);
+        addressBookService.delete(id);
         return Result.success();
     }
 }

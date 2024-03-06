@@ -50,4 +50,9 @@ public class AddressBookServiceImpl implements AddressBookService {
     public void update(AddressBook addressBook) {
         addressBookMapper.update(addressBook);
     }
+
+    @Override
+    public void delete(Long id) {
+        addressBookMapper.delete(id);
+    }
 }

@@ -10,4 +10,6 @@ public interface AddressBookService {
     List<AddressBook> list();
 
     void update(AddressBook addressBook);
+
+    void delete(Long id);
 }
