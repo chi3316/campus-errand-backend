@@ -68,4 +68,17 @@ public class AddressController {
         addressBookService.delete(id);
         return Result.success();
     }
+
+    /**
+     * 设置默认地址
+     * @param addressBook
+     * @return
+     */
+    @PostMapping("/default")
+    @ApiOperation("设置默认地址")
+    public Result setDefault(@RequestBody AddressBook addressBook) {
+        log.info("设置{} 为默认地址");
+        addressBookService.setDefault(addressBook);
+        return Result.success();
+    }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 public class AddressBookServiceImpl implements AddressBookService {
-    //默认地址：1
+    // 默认地址：1
     private static final Integer IS_DEFAULT = 1;
     private static final Integer IS_NOT_DEFAULT = 0;
     @Autowired
@@ -38,7 +38,7 @@ public class AddressBookServiceImpl implements AddressBookService {
         Long userId = BaseContext.getCurrentId();
         AddressBook addressBook = new AddressBook();
         addressBook.setUserId(userId);
-        //封装成entity , mapper层更通用，提高扩展性
+        // 封装成entity , mapper层更通用，提高扩展性
         return addressBookMapper.select(addressBook);
     }
 
@@ -51,8 +51,28 @@ public class AddressBookServiceImpl implements AddressBookService {
         addressBookMapper.update(addressBook);
     }
 
+    /**
+     * 删除地址
+     * @param id
+     */
     @Override
     public void delete(Long id) {
         addressBookMapper.delete(id);
+    }
+
+    /**
+     * 设置默认地址
+     * @param addressBook
+     */
+    @Override
+    public void setDefault(AddressBook addressBook) {
+        // 默认地址只能有一个，先把所有的地址设置为非默认，再将该地址设置为默认
+        addressBook.setUserId(BaseContext.getCurrentId());
+        addressBook.setIsDefault(IS_NOT_DEFAULT);
+        addressBookMapper.setIsDefaultByUserId(addressBook);
+
+        // 将该地址设置为默认
+        addressBook.setIsDefault(IS_DEFAULT);
+        addressBookMapper.update(addressBook);
     }
 }

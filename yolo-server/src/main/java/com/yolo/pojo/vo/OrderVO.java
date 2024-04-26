@@ -29,23 +29,23 @@ public class OrderVO implements Serializable {
     //下单时间
     private LocalDateTime orderTime;
 
-    //接单时间
+    // 接单时间
     private LocalDateTime takeTime;
 
-    //完成时间
+    // 完成时间
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss") //不生效，不知道为啥
     private LocalDateTime finishTime;
 
-    //订单金额
+    // 订单金额
     private Double amount;
 
-    //备注
+    // 备注
     private String remark;
 
-    //起点
+    // 起点
     private String departureAddress;
 
-    //终点
+    // 终点
     private String destinationAddress;
 
 }

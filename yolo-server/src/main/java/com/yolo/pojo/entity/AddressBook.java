@@ -16,12 +16,12 @@ public class AddressBook {
 
     private String consignee;
 
-    //楼栋号
+    // 楼栋号
     private String building;
 
-    //具体位置，门牌号 or 宿舍号
+    // 具体位置，门牌号 or 宿舍号
     private String specificLocation;
 
-    //默认地址 : 1 是 0否
+    // 默认地址 : 1 是 0否
     private Integer isDefault;
 }

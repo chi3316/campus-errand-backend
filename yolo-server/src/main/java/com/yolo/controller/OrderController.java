@@ -2,7 +2,6 @@ package com.yolo.controller;
 
 import com.yolo.pojo.dto.OrderSubmitDTO;
 import com.yolo.pojo.vo.OrderSubmitVO;
-import com.yolo.pojo.vo.OrderVO;
 import com.yolo.result.PageResult;
 import com.yolo.result.Result;
 import com.yolo.service.OrderService;

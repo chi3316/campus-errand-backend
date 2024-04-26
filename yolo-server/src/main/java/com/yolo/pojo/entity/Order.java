@@ -27,29 +27,29 @@ public class Order {
 
     private Long receiverId;
 
-    //快递站id
+    // 快递站id
     private Long expressStationId;
 
-    //接单人的id
+    // 接单人的id
     private Long ReceiverId;
     //下单时间
     private LocalDateTime orderTime;
 
-    //接单时间
+    // 接单时间
     private LocalDateTime takeTime;
 
-    //完成时间
+    // 完成时间
     private LocalDateTime finishTime;
 
-    //订单金额
+    // 订单金额
     private BigDecimal amount;
 
-    //备注
+    // 备注
     private String remark;
 
-    //起点
+    // 起点
     private String departureAddress;
 
-    //终点
+    // 终点
     private String destinationAddress;
 }

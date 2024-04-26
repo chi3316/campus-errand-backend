@@ -74,11 +74,11 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
     @Override
     protected void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
         log.info("扩展消息转换器");
-        //消息转换器对象
+        // 消息转换器对象
         MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-        //为消息转换器对象添加一个对象转化器对象 com.yolo.json.JacksonObjectMapper
+        // 为消息转换器对象添加一个对象转化器对象 com.yolo.json.JacksonObjectMapper
         converter.setObjectMapper(new JacksonObjectMapper());
-        //将自己的converter加到框架的转换器中
+        // 将自己的converter加到框架的转换器中
         converters.add(0,converter);
     }
 }
