@@ -1,11 +1,11 @@
 yolo:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    host: localhost
+    host: rm-cn-tk23q94qu000emo.rwlb.rds.aliyuncs.com
     port: 3306
     database: campus_errand
-    username: root
-    password: cjp
+    username: scut22
+    password: scut22SCUT2_2
   alioss:
     endpoint: oss-cn-guangzhou.aliyuncs.com
     access-key-id: LTAI5tGfx5fcWHz4kddV3wk9
