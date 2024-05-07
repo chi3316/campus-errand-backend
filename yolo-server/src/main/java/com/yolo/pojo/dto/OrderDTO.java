@@ -12,7 +12,7 @@ public class OrderDTO implements Serializable {
 
     private String number;
     private String title;
-    // 0: 待帮组  1: 已完成
+    // 0: 待帮助  1: 已完成
     private Integer status;
 
     // 下单用户id

@@ -15,11 +15,11 @@ spring:
 
 
 mybatis:
-#  #mapper配置文件
+# mapper配置文件
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.yolo.entity
   configuration:
-    #开启驼峰命名
+    # 开启驼峰命名
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 yolo:
@@ -30,7 +30,7 @@ yolo:
     admin-ttl: 7200000
     # 设置前端传递过来的令牌名称
     admin-token-name: token
-    user-secret-key: itheima
+    user-secret-key: scut
     user-ttl: 7200000
     user-token-name: authentication
   wechat:
