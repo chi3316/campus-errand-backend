@@ -4,7 +4,7 @@
 <mapper namespace="com.yolo.mapper.AddressBookMapper">
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         insert into address_book (user_id, consignee, building, specific_location, is_default)
-        VALUES(#{userId},#{consignee},#{building},#{specificLocation},#{is_default})
+        VALUES(#{userId},#{consignee},#{building},#{specificLocation},#{isDefault})
     </insert>
     <update id="update">
         update address_book
