@@ -32,14 +32,14 @@ public class OrderServiceImpl implements OrderService {
     private AddressBookMapper addressBookMapper;
     @Override
     public PageResult pageQuery(int page, int pageSize, Integer status) {
-        //获取用户id , 封装到DTO对象中
+        // 获取用户id , 封装到DTO对象中
         OrdersPageQueryDTO ordersPageQueryDTO = new OrdersPageQueryDTO();
         ordersPageQueryDTO.setUserId(BaseContext.getCurrentId());
         ordersPageQueryDTO.setStatus(status);
-        //进行分页查询
+        // 进行分页查询
         PageHelper.startPage(page,pageSize);
         Page<Order> pageResults = orderMapper.pageQuery(ordersPageQueryDTO);
-        //将查询到的数据封装到VO对象中并且返回
+        // 将查询到的数据封装到VO对象中并且返回
         List<OrderVO> orderVOS = new ArrayList<>();
         for(Order order : pageResults) {
             OrderVO orderVO = new OrderVO();
@@ -52,30 +52,30 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderSubmitVO submit(OrderSubmitDTO orderSubmitDTO) {
-        //获取DTO数据，并添加对应数据 ： 地址信息，时间信息，订单号，封装到Order中
-        //获取id查询地址簿获取地址
-        //判断地址簿是否为空，空 => 抛出异常，前端提醒用户添加收获地址
+        // 获取DTO数据，并添加对应数据 ： 地址信息，时间信息，订单号，封装到Order中
+        // 获取id查询地址簿获取地址
+        // 判断地址簿是否为空，空 => 抛出异常，前端提醒用户添加收获地址
         AddressBook addressBook = addressBookMapper.getById(orderSubmitDTO.getAddressBookId());
         if(addressBook == null) {
             throw new AddressBookBusinessException(MessageConstant.ADDRESS_BOOK_IS_NULL);
         }
-        //根据传进来的起点id , 终点id 来查询出地址的具体信息，并填充到order对象中
+        // 根据传进来的起点id , 终点id 来查询出地址的具体信息，并填充到order对象中
         String destinationAddress = addressBook.getBuilding() + " " + addressBook.getSpecificLocation();
 
         Order order = new Order();
         BeanUtils.copyProperties(orderSubmitDTO,order);
         order.setOrderTime(LocalDateTime.now());
         order.setNumber(String.valueOf(System.currentTimeMillis()));
-        //设置订单状态,用户id
+        // 设置订单状态,用户id
         order.setStatus(OrderStatusConstant.WAIT_FOR_HELP);
         order.setUserId(BaseContext.getCurrentId());//TODO : 由于没有先登录，没办法从ThreadLocal中获取到user_id
         order.setDestinationAddress(destinationAddress);
 
 
 
-        //插入到订单表中
+        // 插入到订单表中
         orderMapper.insert(order);
-        //将生成的订单id封装与下单时间封装到VO对象中，返回
+        // 将生成的订单id封装与下单时间封装到VO对象中，返回
         OrderSubmitVO orderSubmitVO = OrderSubmitVO.builder()
                 .id(order.getId())
                 .orderTime(order.getOrderTime())

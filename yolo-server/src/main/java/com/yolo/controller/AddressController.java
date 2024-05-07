@@ -19,7 +19,7 @@ public class AddressController {
     @Autowired
     private AddressBookService addressBookService;
     /**
-     *向地址簿中添加地址
+     * 向地址簿中添加地址
      * @param addressBook
      * @return
      */
@@ -32,7 +32,7 @@ public class AddressController {
     }
 
     /**
-     * 罗列用户的所以地址信息
+     * 罗列用户的所有地址信息
      * @return
      */
     @GetMapping("/list")
@@ -44,7 +44,7 @@ public class AddressController {
     }
 
     /**
-     * 根据id修改订单
+     * 根据id修改地址
      * @param addressBook
      * @return
      */
@@ -57,7 +57,7 @@ public class AddressController {
     }
 
     /**
-     * 删除订单
+     * 删除地址
      * @param id
      * @return
      */
@@ -77,7 +77,7 @@ public class AddressController {
     @PostMapping("/default")
     @ApiOperation("设置默认地址")
     public Result setDefault(@RequestBody AddressBook addressBook) {
-        log.info("设置{} 为默认地址");
+        log.info("设置{} 为默认地址" , addressBook);
         addressBookService.setDefault(addressBook);
         return Result.success();
     }
