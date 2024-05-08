@@ -23,7 +23,7 @@ import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
-    //微信接口的地址以及参数
+    // 微信接口的地址以及参数
     public static final String WX_LOGIN_URL = "https://api.weixin.qq.com/sns/jscode2session";
     public static final String AUTHORIZATION_CODE = "authorization_code";
     @Autowired
@@ -39,15 +39,15 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public UserLoginVO wxLogin(UserLoginDTO userLoginDTO) {
-        //调用微信提供的接口返回 openid
+        // 调用微信提供的接口返回 openid
         String openid = getOpenId(userLoginDTO.getCode());
         if (null == openid) {
             throw new LoginFailedException(MessageConstant.LOGIN_FAILED);
         }
-        //判断是否为新用户，新用户就自动注册 insert
+        // 判断是否为新用户，新用户就自动注册 insert
         User user = userMapper.getByOpenid(openid);
         if(null == user) {
-            //这里得继续使用这个user,因为新用户执行insert之后生成的主键会写入user的id属性,需要利用这个id生成令牌
+            // 这里得继续使用这个user,因为新用户执行insert之后生成的主键会写入user的id属性,需要利用这个id生成令牌
             user = User.builder()
                     .openid(openid)
                     .createTime(LocalDateTime.now())
@@ -55,11 +55,11 @@ public class UserServiceImpl implements UserService {
             userMapper.insert(user);
         }
 
-        //为用户生成jwt令牌
+        // 为用户生成jwt令牌
         Map<String, Object> claims = new HashMap<>();
         claims.put(JwtClaimsConstant.USER_ID,user.getId());
         String token = JwtUtil.createJWT(jwtProperties.getUserSecretKey(), jwtProperties.getUserTtl(), claims);
-        //封装VO对象并返回
+        // 封装VO对象并返回
         return UserLoginVO.builder()
                 .id(user.getId())
                 .token(token)
@@ -79,9 +79,9 @@ public class UserServiceImpl implements UserService {
         map.put("js_code",code);
         map.put("grant_type",AUTHORIZATION_CODE);
 
-        //利用HttpClient发送请求
+        // 利用HttpClient发送请求
         String json = HttpClientUtil.doGet(WX_LOGIN_URL, map);
-        //解析json
+        // 解析json
         JSONObject jsonObject = JSON.parseObject(json);
         String openid = jsonObject.getString("openid");
         return openid;

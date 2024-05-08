@@ -68,7 +68,7 @@ public class OrderServiceImpl implements OrderService {
         order.setNumber(String.valueOf(System.currentTimeMillis()));
         // 设置订单状态,用户id
         order.setStatus(OrderStatusConstant.WAIT_FOR_HELP);
-        order.setUserId(BaseContext.getCurrentId());//TODO : 由于没有先登录，没办法从ThreadLocal中获取到user_id
+        order.setUserId(BaseContext.getCurrentId());
         order.setDestinationAddress(destinationAddress);
 
 
