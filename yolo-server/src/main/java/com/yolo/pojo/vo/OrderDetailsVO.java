@@ -1,40 +1,43 @@
 package com.yolo.pojo.vo;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class OrderVO implements Serializable {
-    private Long id;
+public class OrderDetailsVO {
+    private String number;
+
+    private String address;
+
+    // 用户的地址id，终点
+    private String addressBookId;
+
+    private double amount;
 
     private String title;
 
-    //0: 待帮助  1: 已帮助  2: 已完成
-    private Integer status;
-
-    // 用户id
-    private Long userId;
-
-    //下单时间
     private LocalDateTime orderTime;
 
+    private LocalDateTime payTime;
 
-    // 订单金额
-    private Double amount;
+    private LocalDateTime takeTime;
+
+    private LocalDateTime finishTime;
+
+    private String remark;
 
     // 起点
     private String departureAddress;
 
     // 终点
     private String destinationAddress;
+
 
 }

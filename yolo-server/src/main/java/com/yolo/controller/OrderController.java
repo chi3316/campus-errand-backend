@@ -2,6 +2,7 @@ package com.yolo.controller;
 
 import com.yolo.pojo.dto.OrderSubmitDTO;
 import com.yolo.pojo.vo.OrderSubmitVO;
+import com.yolo.pojo.vo.OrderVO;
 import com.yolo.result.PageResult;
 import com.yolo.result.Result;
 import com.yolo.service.OrderService;
@@ -24,9 +25,9 @@ public class OrderController {
      */
     @GetMapping("/historyOrders")
     @ApiOperation("用户订单分页查询")
-    public Result<PageResult> historyOrders(int page, int pageSize, Integer status) {
-        log.info("订单分页查询：pageNum:{}, pageSize:{}, status:{}");
-        PageResult pageResult = orderService.pageQuery(page,pageSize,status);
+    public Result<PageResult<OrderVO>> historyOrders(int page, int pageSize, Integer status) {
+        log.info("订单分页查询：pageNum:{}, pageSize:{}, status:{}",page,pageSize,status);
+        PageResult<OrderVO> pageResult = orderService.pageQuery(page,pageSize,status);
         return Result.success(pageResult);
     }
 

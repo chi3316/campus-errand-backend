@@ -31,7 +31,7 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private AddressBookMapper addressBookMapper;
     @Override
-    public PageResult pageQuery(int page, int pageSize, Integer status) {
+    public PageResult<OrderVO> pageQuery(int page, int pageSize, Integer status) {
         // 获取用户id , 封装到DTO对象中
         OrdersPageQueryDTO ordersPageQueryDTO = new OrdersPageQueryDTO();
         ordersPageQueryDTO.setUserId(BaseContext.getCurrentId());
@@ -40,14 +40,13 @@ public class OrderServiceImpl implements OrderService {
         PageHelper.startPage(page,pageSize);
         Page<Order> pageResults = orderMapper.pageQuery(ordersPageQueryDTO);
         // 将查询到的数据封装到VO对象中并且返回
-        List<OrderVO> orderVOS = new ArrayList<>();
+        List<OrderVO> orderVOs = new ArrayList<>();
         for(Order order : pageResults) {
             OrderVO orderVO = new OrderVO();
             BeanUtils.copyProperties(order,orderVO);
-            orderVOS.add(orderVO);
+            orderVOs.add(orderVO);
         }
-        PageResult result = new PageResult(pageResults.getTotal(), pageResults.getResult());
-        return result;
+        return new PageResult<>(pageResults.getTotal(), orderVOs);
     }
 
     @Override

@@ -13,7 +13,7 @@ public class OrderSubmitDTO implements Serializable {
     // 用户的地址id，终点
     private Long addressBookId;
 
-    // 快递站的id, 起点 => 不要穿id , 直接给地址
+    // 快递站, 起点 => 不要传id , 直接给地址
     private String departureAddress;
 
     // 总金额
@@ -21,4 +21,7 @@ public class OrderSubmitDTO implements Serializable {
 
     // 订单的备注信息
     private String remark;
+
+    // 照片
+    private String imageUrl;
 }

@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PageResult implements Serializable {
+public class PageResult<T> implements Serializable {
     private long total; // 记录总条数
-    private List records;
+    private List<T> records;
 }

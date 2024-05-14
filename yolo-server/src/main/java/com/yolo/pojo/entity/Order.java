@@ -16,13 +16,13 @@ public class Order {
     private Long id;
     private String number;
     private String title;
-    //0: 待帮组  1: 已完成
+    // 0: 待帮组  1: 已完成
     private Integer status;
 
-    //下单用户id
+    // 下单用户id
     private Long userId;
 
-    //用户的地址id
+    // 用户的地址id
     private Long addressBookId;
 
     private Long receiverId;
@@ -32,8 +32,12 @@ public class Order {
 
     // 接单人的id
     private Long ReceiverId;
-    //下单时间
+
+    // 下单时间
     private LocalDateTime orderTime;
+
+    // 支付时间
+    private LocalDateTime payTime;
 
     // 接单时间
     private LocalDateTime takeTime;
@@ -43,6 +47,8 @@ public class Order {
 
     // 订单金额
     private BigDecimal amount;
+
+
 
     // 备注
     private String remark;

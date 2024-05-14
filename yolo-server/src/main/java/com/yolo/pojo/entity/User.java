@@ -39,4 +39,7 @@ public class User implements Serializable {
 
     // 注册时间
     private LocalDateTime createTime;
+
+    // 是否是接单员 0 : 不是   1 : 是（默认是0）
+    private int isOrderTaker;
 }
