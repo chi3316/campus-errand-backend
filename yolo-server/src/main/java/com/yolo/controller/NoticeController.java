@@ -24,7 +24,7 @@ public class NoticeController {
     @GetMapping("/selectAll")
     public Result<NoticeVO> selectAll() {
         // controller -> service -> mapper -> 数据库
-        noticeService.selectAll();
-        return null;
+        NoticeVO noticeVO = noticeService.selectAll();
+        return Result.success(noticeVO);
     }
 }
