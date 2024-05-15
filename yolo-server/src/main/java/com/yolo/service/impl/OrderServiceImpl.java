@@ -12,6 +12,7 @@ import com.yolo.pojo.dto.OrderSubmitDTO;
 import com.yolo.pojo.dto.OrdersPageQueryDTO;
 import com.yolo.pojo.entity.AddressBook;
 import com.yolo.pojo.entity.Order;
+import com.yolo.pojo.vo.OrderDetailsVO;
 import com.yolo.pojo.vo.OrderSubmitVO;
 import com.yolo.pojo.vo.OrderVO;
 import com.yolo.result.PageResult;
@@ -83,5 +84,15 @@ public class OrderServiceImpl implements OrderService {
                 .orderAmount(order.getAmount())
                 .build();
         return orderSubmitVO;
+    }
+
+    @Override
+    public OrderDetailsVO selectDetails(Long id) {
+        // 从订单表里面查id对应的订单的相关字段
+        Order order = orderMapper.select(id);
+        // 封装成OrderDetailsVO对象返回
+        OrderDetailsVO orderDetailsVO = new OrderDetailsVO();
+        BeanUtils.copyProperties(order,orderDetailsVO);
+        return orderDetailsVO;
     }
 }
