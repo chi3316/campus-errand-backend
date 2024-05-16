@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
@@ -14,12 +15,10 @@ import java.time.LocalDateTime;
 public class OrderDetailsVO {
     private String number;
 
-    private String address;
-
     // 用户的地址id，终点
-    private String addressBookId;
+    private Long addressBookId;
 
-    private double amount;
+    private BigDecimal amount;
 
     private String title;
 

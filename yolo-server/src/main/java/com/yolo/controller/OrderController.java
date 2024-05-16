@@ -1,6 +1,7 @@
 package com.yolo.controller;
 
 import com.yolo.pojo.dto.OrderSubmitDTO;
+import com.yolo.pojo.vo.OrderDetailsVO;
 import com.yolo.pojo.vo.OrderSubmitVO;
 import com.yolo.pojo.vo.OrderVO;
 import com.yolo.result.PageResult;
@@ -42,5 +43,13 @@ public class OrderController {
         log.info("用户提交订单：{}",orderSubmitDTO);
         OrderSubmitVO orderSubmitVO = orderService.submit(orderSubmitDTO);
         return Result.success(orderSubmitVO);
+    }
+
+    @ApiOperation("查询订单详情")
+    @GetMapping("/orderDetail/{id}")
+    public Result<OrderDetailsVO> orderDetails(@PathVariable Long id) {
+        log.info("查询订单详情，订单id : {}" , id);
+        OrderDetailsVO orderDetailsVO = orderService.selectDetails(id);
+        return Result.success(orderDetailsVO);
     }
 }
