@@ -2,6 +2,7 @@ package com.yolo.controller;
 
 import com.yolo.constant.MessageConstant;
 import com.yolo.pojo.dto.UserLoginDTO;
+import com.yolo.pojo.dto.UserUpdateDTO;
 import com.yolo.pojo.vo.UserLoginVO;
 import com.yolo.result.Result;
 import com.yolo.service.UserService;
@@ -29,7 +30,6 @@ public class UserController {
 
     /**
      * 微信登录
-     *
      * @return
      */
     @PostMapping("/user/login")
@@ -40,6 +40,11 @@ public class UserController {
         return Result.success(userLoginVO);
     }
 
+    /**
+     * 文件上传
+     * @param file
+     * @return
+     */
     @PostMapping("/common/upload")
     @ApiOperation("上传文件")
     public Result<String> upload(MultipartFile file) {
@@ -57,5 +62,19 @@ public class UserController {
             log.info("文件上传失败，{}", file);
         }
         return Result.error(MessageConstant.UPLOAD_FAILED);
+    }
+
+
+    /**
+     * 更新用户的信息
+     * @param userUpdateDTO
+     * @return
+     */
+    @PostMapping("/user/update")
+    @ApiOperation("更新用户信息")
+    public Result update(UserUpdateDTO userUpdateDTO) {
+        log.info("更新用户信息：{}",userUpdateDTO);
+        userService.update(userUpdateDTO);
+        return Result.success();
     }
 }
