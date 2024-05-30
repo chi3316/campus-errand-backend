@@ -8,8 +8,6 @@ yolo:
     password: scut22SCUT2_2
   alioss:
     endpoint: oss-cn-guangzhou.aliyuncs.com
-    access-key-id: LTAI5tGfx5fcWHz4kddV3wk9
-    access-key-secret: nKVEBXHIqZFbokqs3jjB7RCFcMhAG5
     bucket-name: web-cjpdemo
   redis:
     host: localhost
