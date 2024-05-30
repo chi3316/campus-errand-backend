@@ -1,6 +1,12 @@
 server:
   port: 8081
 spring:
+  # 配置文件上传的大小
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+
   # 允许循环引用
   main:
     allow-circular-references: true
