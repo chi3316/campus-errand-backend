@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yolo.mapper.AdviceUrlsMapper">
+
+    <insert id="save" parameterType="com.yolo.pojo.entity.AdviceUrls" useGeneratedKeys="true" keyProperty="id">
+        insert into advice_urls (advice_id, url) VALUES (#{adviceId},#{url})
+    </insert>
+</mapper>

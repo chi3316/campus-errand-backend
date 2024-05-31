@@ -23,7 +23,6 @@ public class AddressBookServiceImpl implements AddressBookService {
     public void save(AddressBook addressBook) {
         // 向表中一条地址记录
         addressBook.setUserId(BaseContext.getCurrentId());
-        //addressBook.setUserId(2L); // 测试用
         // 添加的时候普通的地址，需要在这里设置is_default字段为0
         addressBook.setIsDefault(IS_NOT_DEFAULT);
         addressBookMapper.insert(addressBook);

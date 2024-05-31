@@ -1,10 +1,12 @@
 package com.yolo.controller;
 
 import com.yolo.constant.MessageConstant;
+import com.yolo.pojo.dto.FeedbackDTO;
 import com.yolo.pojo.dto.UserLoginDTO;
 import com.yolo.pojo.dto.UserUpdateDTO;
 import com.yolo.pojo.vo.UserLoginVO;
 import com.yolo.result.Result;
+import com.yolo.service.FeedbackService;
 import com.yolo.service.UserService;
 import com.yolo.utility.AliOssUtil;
 import io.swagger.annotations.Api;
@@ -27,6 +29,8 @@ public class UserController {
     private UserService userService;
     @Autowired
     private AliOssUtil aliOssUtil;
+    @Autowired
+    private FeedbackService feedbackService;
 
     /**
      * 微信登录
@@ -70,6 +74,19 @@ public class UserController {
     public Result update(@RequestBody UserUpdateDTO userUpdateDTO) {
         log.info("更新用户信息：{}",userUpdateDTO);
         userService.update(userUpdateDTO);
+        return Result.success();
+    }
+
+    /**
+     * 添加用户建议
+     * @param feedbackDTO
+     * @return
+     */
+    @PostMapping("/user/addAdvice")
+    @ApiOperation("添加用户反馈")
+    public Result addAdvice(@RequestBody FeedbackDTO feedbackDTO) {
+        log.info("添加用户反馈：{}" , feedbackDTO);
+        feedbackService.save(feedbackDTO);
         return Result.success();
     }
 }
