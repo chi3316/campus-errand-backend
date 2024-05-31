@@ -2,6 +2,7 @@ package com.yolo.controller;
 
 import com.yolo.constant.MessageConstant;
 import com.yolo.pojo.dto.UserLoginDTO;
+import com.yolo.pojo.dto.UserUpdateDTO;
 import com.yolo.pojo.vo.UserLoginVO;
 import com.yolo.result.Result;
 import com.yolo.service.UserService;
@@ -57,5 +58,18 @@ public class UserController {
             log.info("文件上传失败，{}", file);
         }
         return Result.error(MessageConstant.UPLOAD_FAILED);
+    }
+
+    /**
+     * 更新用户的信息
+     * @param userUpdateDTO
+     * @return
+     */
+    @PostMapping("/user/update")
+    @ApiOperation("更新用户信息")
+    public Result update(@RequestBody UserUpdateDTO userUpdateDTO) {
+        log.info("更新用户信息：{}",userUpdateDTO);
+        userService.update(userUpdateDTO);
+        return Result.success();
     }
 }

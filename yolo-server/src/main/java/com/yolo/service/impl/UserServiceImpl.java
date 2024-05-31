@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -62,11 +63,20 @@ public class UserServiceImpl implements UserService {
         Map<String, Object> claims = new HashMap<>();
         claims.put(JwtClaimsConstant.USER_ID,user.getId());
         String token = JwtUtil.createJWT(jwtProperties.getUserSecretKey(), jwtProperties.getUserTtl(), claims);
+        // 计算登录失效时间
+        Calendar currentTime = Calendar.getInstance();
+        // 计算过期时间
+        long currentTimeStamp = System.currentTimeMillis();
+        long expireTimeStamp = currentTimeStamp + jwtProperties.getUserTtl();
         // 封装VO对象并返回
         return UserLoginVO.builder()
                 .id(user.getId())
                 .token(token)
                 .openid(openid)
+                .phone(user.getPhone())
+                .avatar(user.getAvatar())
+                .name(user.getName())
+                .expiration(expireTimeStamp)
                 .build();
     }
 

@@ -16,5 +16,8 @@ public class UserLoginVO implements Serializable {
     private Long id;
     private String openid; // 微信用户唯一标识
     private String token; // jwt令牌
-
+    private String name; // 昵称
+    private String avatar; // 头像url
+    private String phone; // 电话号码
+    private Long expiration; // 令牌过期时间
 }
