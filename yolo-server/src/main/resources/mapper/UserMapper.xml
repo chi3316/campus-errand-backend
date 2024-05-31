@@ -6,15 +6,4 @@
         insert into user (openid,name,phone,gender,id_number,avater,create_time)
         values (#{openid},#{name},#{phone},#{gender},#{idNumber},#{avatar},#{createTime})
     </insert>
-    <update id="update">
-            update user
-            <set>
-                <if test="name != null">name = #{name},</if>
-                <if test="phone != null">phone = #{phone},</if>
-                <if test="gender != null">gender = #{gender},</if>
-                <if test="avatar != null">avatar = #{avatar},</if>
-                <if test="isOrderTaker != null">is_order_taker = #{isOrderTaker},</if>
-            </set>
-            where id = #{id}
-    </update>
 </mapper>

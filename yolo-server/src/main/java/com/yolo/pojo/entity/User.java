@@ -22,7 +22,7 @@ public class User implements Serializable {
     // 微信用户唯一标识
     private String openid;
 
-    // 用户名
+    // 姓名
     private String name;
 
     // 手机号
@@ -41,6 +41,5 @@ public class User implements Serializable {
     private LocalDateTime createTime;
 
     // 是否是接单员 0 : 不是   1 : 是（默认是0）
-    private Integer isOrderTaker;
-
+    private int isOrderTaker;
 }

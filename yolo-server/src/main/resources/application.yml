@@ -38,7 +38,7 @@ yolo:
     admin-token-name: token
     user-secret-key: scut
     user-ttl: 7200000
-    user-token-name: token
+    user-token-name: authentication
   wechat:
     appid: ${yolo.wechat.appid}
     secret: ${yolo.wechat.secret}
