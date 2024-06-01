@@ -7,12 +7,15 @@ import com.yolo.constant.MessageConstant;
 import com.yolo.context.BaseContext;
 import com.yolo.exception.LoginFailedException;
 import com.yolo.mapper.UserMapper;
+import com.yolo.pojo.dto.ApplyOrderTakerDTO;
 import com.yolo.pojo.dto.UserLoginDTO;
 import com.yolo.pojo.dto.UserUpdateDTO;
+import com.yolo.pojo.entity.CheckOrderTaker;
 import com.yolo.pojo.entity.User;
 import com.yolo.pojo.vo.UserLoginVO;
 import com.yolo.properties.JwtProperties;
 import com.yolo.properties.WeChatProperties;
+import com.yolo.service.CheckOrderTakerService;
 import com.yolo.service.UserService;
 import com.yolo.utility.HttpClientUtil;
 import com.yolo.utility.JwtUtil;
@@ -36,6 +39,8 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
     @Autowired
     private JwtProperties jwtProperties;
+    @Autowired
+    private CheckOrderTakerService checkOrderTakerService;
     /**
      * 实现用户微信登录
      * @param userLoginDTO
@@ -87,6 +92,26 @@ public class UserServiceImpl implements UserService {
         // 获得当前用户的id，根据id修改记录
         user.setId(BaseContext.getCurrentId());
         userMapper.update(user);
+    }
+
+
+    @Override
+    public void apply4OrderTaker(ApplyOrderTakerDTO applyOrderTakerDTO) {
+        // 申请结单 => 把用户表的is_order_taker字段更改为1
+        User user = new User();
+        user.setId(BaseContext.getCurrentId());
+        user.setIsOrderTaker(1);
+        userMapper.update(user);
+        // 得再需要一个表 check_order_taker ： id  user_id  student_id  url(上传的资料)  success
+        // 插入数据到表中
+        CheckOrderTaker checkOrderTaker = CheckOrderTaker.builder()
+                .userId(BaseContext.getCurrentId())
+                .url(applyOrderTakerDTO.getStudentCard())
+                .studentId(applyOrderTakerDTO.getStudentId())
+                .name(applyOrderTakerDTO.getName())
+                .createTime(LocalDateTime.now())
+                .build();
+        checkOrderTakerService.insert(checkOrderTaker);
     }
 
     /**

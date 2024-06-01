@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yolo.mapper.CheckOrderTakerMapper">
+    <insert id="insert">
+        insert into ` check_order_taker` (user_id, student_id, url,createTime,name)
+        VALUES (#{userId},#{studentId},#{url},#{createTime},#{name})
+    </insert>
+</mapper>

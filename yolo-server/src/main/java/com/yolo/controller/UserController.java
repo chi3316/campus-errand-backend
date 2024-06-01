@@ -1,6 +1,7 @@
 package com.yolo.controller;
 
 import com.yolo.constant.MessageConstant;
+import com.yolo.pojo.dto.ApplyOrderTakerDTO;
 import com.yolo.pojo.dto.FeedbackDTO;
 import com.yolo.pojo.dto.UserLoginDTO;
 import com.yolo.pojo.dto.UserUpdateDTO;
@@ -71,7 +72,7 @@ public class UserController {
      */
     @PostMapping("/user/update")
     @ApiOperation("更新用户信息")
-    public Result update(@RequestBody UserUpdateDTO userUpdateDTO) {
+    public Result<String> update(@RequestBody UserUpdateDTO userUpdateDTO) {
         log.info("更新用户信息：{}",userUpdateDTO);
         userService.update(userUpdateDTO);
         return Result.success();
@@ -84,9 +85,22 @@ public class UserController {
      */
     @PostMapping("/user/addAdvice")
     @ApiOperation("添加用户反馈")
-    public Result addAdvice(@RequestBody FeedbackDTO feedbackDTO) {
+    public Result<String> addAdvice(@RequestBody FeedbackDTO feedbackDTO) {
         log.info("添加用户反馈：{}" , feedbackDTO);
         feedbackService.save(feedbackDTO);
+        return Result.success();
+    }
+
+    /**
+     * 用户申请成为接单员
+     * @param applyOrderTakerDTO
+     * @return
+     */
+    @ApiOperation("用户申请接单")
+    @PostMapping("/user/applyOrderTaker")
+    public Result<String> applyOrderTaker(@RequestBody ApplyOrderTakerDTO applyOrderTakerDTO) {
+        log.info("用户申请接单：{}" , applyOrderTakerDTO);
+        userService.apply4OrderTaker(applyOrderTakerDTO);
         return Result.success();
     }
 }
