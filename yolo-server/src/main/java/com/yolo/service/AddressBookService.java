@@ -1,17 +1,18 @@
 package com.yolo.service;
 
+import com.yolo.pojo.dto.AddressBookDTO;
 import com.yolo.pojo.entity.AddressBook;
+import com.yolo.pojo.vo.AddressVO;
 
 import java.util.List;
 
 public interface AddressBookService {
-    void save(AddressBook addressBook);
+    void save(AddressBookDTO addressBookDTO);
 
-    List<AddressBook> list();
+    List<AddressVO> list();
 
     void update(AddressBook addressBook);
 
     void delete(Long id);
 
-    void setDefault(AddressBook addressBook);
 }

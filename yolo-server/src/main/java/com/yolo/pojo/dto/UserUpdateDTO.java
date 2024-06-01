@@ -8,4 +8,5 @@ import java.io.Serializable;
 public class UserUpdateDTO implements Serializable {
     private String avatar;
     private String name;
+    private String phone;
 }

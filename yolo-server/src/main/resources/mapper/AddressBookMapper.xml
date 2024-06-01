@@ -3,8 +3,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yolo.mapper.AddressBookMapper">
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        insert into address_book (user_id, consignee, building, specific_location, is_default)
-        VALUES(#{userId},#{consignee},#{building},#{specificLocation},#{isDefault})
+        insert into address_book (user_id, consignee, building, specific_location,phone)
+        VALUES(#{userId},#{consignee},#{building},#{specificLocation},#{phone})
     </insert>
     <update id="update">
         update address_book
@@ -12,7 +12,7 @@
             <if test="consignee != null">consignee = #{consignee},</if>
             <if test="building != null">building = #{building},</if>
             <if test="specificLocation != null">specific_location = #{specificLocation},</if>
-            <if test="isDefault != null">is_default = #{isDefault},</if>
+            <if test="phone != null">phone = #{phone},</if>
         </set>
         where id = #{id}
     </update>
@@ -20,11 +20,11 @@
         select * from address_book 
         <where>
             <if test="id != null">and id = #{id}</if>
-            <if test="userId != null">and userId = #{userId}</if>
+            <if test="userId != null">and user_id = #{userId}</if>
             <if test="consignee != null">and consignee = #{consignee}</if>
             <if test="building != null">and building = #{building}</if>
             <if test="specificLocation != null">and specific_location = #{specificLocation}</if>
-            <if test="isDefault != null">and is_default = #{isDefault}</if>
+            <if test="phone != null">and phone = #{phone}</if>
         </where>
     </select>
 </mapper>

@@ -23,5 +23,8 @@ public class AddressBook {
     private String specificLocation;
 
     // 默认地址 : 1 是 0否
-    private Integer isDefault;
+    // private Integer isDefault; 感觉暂时不需要这个
+
+    // 电话号码
+    private String phone;
 }
