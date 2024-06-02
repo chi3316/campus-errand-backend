@@ -67,6 +67,14 @@ public class AddressBookServiceImpl implements AddressBookService {
         addressBookMapper.delete(id);
     }
 
+    @Override
+    public AddressVO getById(Long id) {
+        AddressBook addressBook = addressBookMapper.getById(id);
+        AddressVO addressVO = new AddressVO();
+        BeanUtils.copyProperties(addressBook,addressVO);
+        return addressVO;
+    }
+
     /**
      * 设置默认地址
      * @param addressBook

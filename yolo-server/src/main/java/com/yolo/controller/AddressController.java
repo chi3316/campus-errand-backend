@@ -7,6 +7,7 @@ import com.yolo.result.Result;
 import com.yolo.service.AddressBookService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,19 @@ public class AddressController {
         log.info("新增地址：{}",addressBookDTO);
         addressBookService.save(addressBookDTO);
         return  Result.success();
+    }
+
+    /**
+     * 根据id查询地址
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    @ApiOperation("根据id查询地址")
+    public Result<AddressVO> getAddressById(@PathVariable Long id) {
+        log.info("查询地址：{}",id);
+        AddressVO addressVO = addressBookService.getById(id);
+        return Result.success(addressVO);
     }
 
     /**
