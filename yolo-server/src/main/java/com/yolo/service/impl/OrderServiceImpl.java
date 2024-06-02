@@ -71,8 +71,6 @@ public class OrderServiceImpl implements OrderService {
         order.setUserId(BaseContext.getCurrentId());
         order.setDestinationAddress(destinationAddress);
 
-
-
         // 插入到订单表中
         orderMapper.insert(order);
         // 将生成的订单id封装与下单时间封装到VO对象中，返回

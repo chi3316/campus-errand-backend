@@ -48,7 +48,8 @@ public class Order {
     // 订单金额
     private BigDecimal amount;
 
-
+    // 订单的详细信息
+    private String info;
 
     // 备注
     private String remark;
