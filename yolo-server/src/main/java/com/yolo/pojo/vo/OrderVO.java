@@ -42,4 +42,7 @@ public class OrderVO implements Serializable {
 
     // 订单备注信息
     private String remark;
+
+    // 返回接单人id
+    private Long receiverId;
 }
