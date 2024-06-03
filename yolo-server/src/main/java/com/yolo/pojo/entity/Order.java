@@ -16,7 +16,7 @@ public class Order {
     private Long id;
     private String number;
     private String title;
-    // 0: 待帮组  1: 已完成
+    // 0: 待帮助  1: 已帮助  2: 已完成
     private Integer status;
 
     // 下单用户id

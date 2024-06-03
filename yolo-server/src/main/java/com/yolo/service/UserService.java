@@ -3,6 +3,7 @@ package com.yolo.service;
 import com.yolo.pojo.dto.ApplyOrderTakerDTO;
 import com.yolo.pojo.dto.UserLoginDTO;
 import com.yolo.pojo.dto.UserUpdateDTO;
+import com.yolo.pojo.entity.User;
 import com.yolo.pojo.vo.UserLoginVO;
 
 public interface UserService {
@@ -11,4 +12,6 @@ public interface UserService {
     void update(UserUpdateDTO userUpdateDTO);
 
     void apply4OrderTaker(ApplyOrderTakerDTO applyOrderTakerDTO);
+
+    User getById(Long userId);
 }

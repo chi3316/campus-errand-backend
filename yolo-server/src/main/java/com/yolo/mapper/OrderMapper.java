@@ -6,6 +6,8 @@ import com.yolo.pojo.entity.Order;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 @Mapper
 public interface OrderMapper {
     Page<Order> pageQuery(OrdersPageQueryDTO ordersPageQueryDTO);
@@ -14,4 +16,7 @@ public interface OrderMapper {
 
     @Select("select * from campus_errand.orders where id = #{id}")
     Order select(Long id);
+
+    @Select("SELECT * FROM orders ORDER BY order_time DESC")
+    List<Order> selectAll();
 }

@@ -13,6 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @Slf4j
 @Api(tags = "订单相关接口")
@@ -20,11 +22,24 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
     @Autowired
     private OrderService orderService;
+
+    /**
+     * 查询全部订单
+     * @return
+     */
+    @ApiOperation("查询所有订单")
+    @GetMapping("/listAll")
+    public Result<List<OrderVO>> findAll() {
+        log.info("查询所有订单");
+        List<OrderVO> orderVOList = orderService.list();
+        return Result.success(orderVOList);
+    }
+
     /**
      * 订单分页查询
      * @return
      */
-    @GetMapping("/historyOrders")
+    @GetMapping("/listByStatus")
     @ApiOperation("用户订单分页查询")
     public Result<PageResult<OrderVO>> historyOrders(int page, int pageSize, Integer status) {
         log.info("订单分页查询：pageNum:{}, pageSize:{}, status:{}",page,pageSize,status);
