@@ -38,5 +38,10 @@ public class OrderDetailsVO {
     // 终点
     private String destinationAddress;
 
+    // 状态
+    private Integer status;
+
+    private String avatar;
+
 
 }

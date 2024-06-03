@@ -99,6 +99,9 @@ public class OrderServiceImpl implements OrderService {
         // 封装成OrderDetailsVO对象返回
         OrderDetailsVO orderDetailsVO = new OrderDetailsVO();
         BeanUtils.copyProperties(order, orderDetailsVO);
+        // 获取下单用户头像
+        User user = userService.getById(order.getUserId());
+        orderDetailsVO.setAvatar(user.getAvatar());
         return orderDetailsVO;
     }
 
