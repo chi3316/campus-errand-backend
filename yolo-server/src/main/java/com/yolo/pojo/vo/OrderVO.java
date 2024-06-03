@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
@@ -27,9 +28,8 @@ public class OrderVO implements Serializable {
     //下单时间
     private LocalDateTime orderTime;
 
-
     // 订单金额
-    private Double amount;
+    private BigDecimal amount;
 
     // 起点
     private String departureAddress;
@@ -37,4 +37,9 @@ public class OrderVO implements Serializable {
     // 终点
     private String destinationAddress;
 
+    // 发布订单的用户的头像
+    private String avatar;
+
+    // 订单备注信息
+    private String remark;
 }

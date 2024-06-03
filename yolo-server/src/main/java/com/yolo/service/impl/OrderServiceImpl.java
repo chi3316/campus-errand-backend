@@ -12,11 +12,13 @@ import com.yolo.pojo.dto.OrderSubmitDTO;
 import com.yolo.pojo.dto.OrdersPageQueryDTO;
 import com.yolo.pojo.entity.AddressBook;
 import com.yolo.pojo.entity.Order;
+import com.yolo.pojo.entity.User;
 import com.yolo.pojo.vo.OrderDetailsVO;
 import com.yolo.pojo.vo.OrderSubmitVO;
 import com.yolo.pojo.vo.OrderVO;
 import com.yolo.result.PageResult;
 import com.yolo.service.OrderService;
+import com.yolo.service.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +33,9 @@ public class OrderServiceImpl implements OrderService {
     private OrderMapper orderMapper;
     @Autowired
     private AddressBookMapper addressBookMapper;
+    @Autowired
+    private UserService userService;
+
     @Override
     public PageResult<OrderVO> pageQuery(int page, int pageSize, Integer status) {
         // 获取用户id , 封装到DTO对象中
@@ -38,13 +43,16 @@ public class OrderServiceImpl implements OrderService {
         ordersPageQueryDTO.setUserId(BaseContext.getCurrentId());
         ordersPageQueryDTO.setStatus(status);
         // 进行分页查询
-        PageHelper.startPage(page,pageSize);
+        PageHelper.startPage(page, pageSize);
         Page<Order> pageResults = orderMapper.pageQuery(ordersPageQueryDTO);
         // 将查询到的数据封装到VO对象中并且返回
         List<OrderVO> orderVOs = new ArrayList<>();
-        for(Order order : pageResults) {
+        for (Order order : pageResults) {
+            Long userId = order.getUserId();
+            User user = userService.getById(userId);
             OrderVO orderVO = new OrderVO();
-            BeanUtils.copyProperties(order,orderVO);
+            orderVO.setAvatar(user.getAvatar());
+            BeanUtils.copyProperties(order, orderVO);
             orderVOs.add(orderVO);
         }
         return new PageResult<>(pageResults.getTotal(), orderVOs);
@@ -56,14 +64,14 @@ public class OrderServiceImpl implements OrderService {
         // 获取id查询地址簿获取地址
         // 判断地址簿是否为空，空 => 抛出异常，前端提醒用户添加收获地址
         AddressBook addressBook = addressBookMapper.getById(orderSubmitDTO.getAddressBookId());
-        if(addressBook == null) {
+        if (addressBook == null) {
             throw new AddressBookBusinessException(MessageConstant.ADDRESS_BOOK_IS_NULL);
         }
         // 根据传进来的起点id , 终点id 来查询出地址的具体信息，并填充到order对象中
         String destinationAddress = addressBook.getBuilding() + " " + addressBook.getSpecificLocation();
 
         Order order = new Order();
-        BeanUtils.copyProperties(orderSubmitDTO,order);
+        BeanUtils.copyProperties(orderSubmitDTO, order);
         order.setOrderTime(LocalDateTime.now());
         order.setNumber(String.valueOf(System.currentTimeMillis()));
         // 设置订单状态,用户id
@@ -90,7 +98,23 @@ public class OrderServiceImpl implements OrderService {
         Order order = orderMapper.select(id);
         // 封装成OrderDetailsVO对象返回
         OrderDetailsVO orderDetailsVO = new OrderDetailsVO();
-        BeanUtils.copyProperties(order,orderDetailsVO);
+        BeanUtils.copyProperties(order, orderDetailsVO);
         return orderDetailsVO;
+    }
+
+    @Override
+    public List<OrderVO> list() {
+        List<Order> orders = orderMapper.selectAll();
+        // 将查询到的数据封装到VO对象中并且返回
+        List<OrderVO> orderVOs = new ArrayList<>();
+        for (Order order : orders) {
+            Long userId = order.getUserId();
+            User user = userService.getById(userId);
+            OrderVO orderVO = new OrderVO();
+            orderVO.setAvatar(user.getAvatar());
+            BeanUtils.copyProperties(order, orderVO);
+            orderVOs.add(orderVO);
+        }
+        return orderVOs;
     }
 }

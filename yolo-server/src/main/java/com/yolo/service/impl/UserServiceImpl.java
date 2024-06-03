@@ -19,6 +19,7 @@ import com.yolo.service.CheckOrderTakerService;
 import com.yolo.service.UserService;
 import com.yolo.utility.HttpClientUtil;
 import com.yolo.utility.JwtUtil;
+import lombok.extern.java.Log;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -112,6 +113,11 @@ public class UserServiceImpl implements UserService {
                 .createTime(LocalDateTime.now())
                 .build();
         checkOrderTakerService.insert(checkOrderTaker);
+    }
+
+    @Override
+    public User getById(Long userId) {
+        return userMapper.getById(userId);
     }
 
     /**
