@@ -1,4 +1,4 @@
-package com.yolo.handle;
+package com.yolo.handler;
 
 import com.yolo.exception.BaseException;
 import com.yolo.result.Result;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  */
 @RestControllerAdvice
 @Slf4j
-public class GlobalExceptionHandle {
+public class GlobalExceptionHandler {
     /**
      * 捕获业务异常
      * @param e

@@ -23,6 +23,7 @@ import lombok.extern.java.Log;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Calendar;
@@ -61,6 +62,7 @@ public class UserServiceImpl implements UserService {
             user = User.builder()
                     .openid(openid)
                     .createTime(LocalDateTime.now())
+                    .isOrderTaker(-1)
                     .build();
             userMapper.insert(user);
         }
@@ -69,8 +71,6 @@ public class UserServiceImpl implements UserService {
         Map<String, Object> claims = new HashMap<>();
         claims.put(JwtClaimsConstant.USER_ID,user.getId());
         String token = JwtUtil.createJWT(jwtProperties.getUserSecretKey(), jwtProperties.getUserTtl(), claims);
-        // 计算登录失效时间
-        Calendar currentTime = Calendar.getInstance();
         // 计算过期时间
         long currentTimeStamp = System.currentTimeMillis();
         long expireTimeStamp = currentTimeStamp + jwtProperties.getUserTtl();
@@ -83,6 +83,7 @@ public class UserServiceImpl implements UserService {
                 .avatar(user.getAvatar())
                 .name(user.getName())
                 .expiration(expireTimeStamp)
+                .isOrderTaker(user.getIsOrderTaker())
                 .build();
     }
 
@@ -96,7 +97,7 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    @Override
+    @Transactional
     public void apply4OrderTaker(ApplyOrderTakerDTO applyOrderTakerDTO) {
         // 申请结单 => 把用户表的is_order_taker字段更改为1
         User user = new User();

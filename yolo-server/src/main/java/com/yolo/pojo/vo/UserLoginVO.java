@@ -20,4 +20,5 @@ public class UserLoginVO implements Serializable {
     private String avatar; // 头像url
     private String phone; // 电话号码
     private Long expiration; // 令牌过期时间
+    private Integer isOrderTaker; // 用户是否具有接单资格
 }

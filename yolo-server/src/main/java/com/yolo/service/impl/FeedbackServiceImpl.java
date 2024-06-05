@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-@Transactional
+
 @Service
 public class FeedbackServiceImpl implements FeedbackService {
     @Autowired
@@ -20,6 +20,7 @@ public class FeedbackServiceImpl implements FeedbackService {
     @Autowired
     private AdviceUrlsMapper adviceUrlsMapper;
 
+    @Transactional
     @Override
     public void save(FeedbackDTO feedbackDTO) {
         Advice advice = new Advice();

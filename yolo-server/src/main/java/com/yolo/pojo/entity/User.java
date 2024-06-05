@@ -40,7 +40,7 @@ public class User implements Serializable {
     // 注册时间
     private LocalDateTime createTime;
 
-    // 是否是接单员  null : 不是;   1 : 待审查;   0 : 修改为不是（默认是null） 2 : 审查通过 3 : 审查不通过
+    // 是否是接单员  -1 : 不是;   1 : 待审查;   0 : 修改为不是（默认是null） 2 : 审查通过 3 : 审查不通过
     private Integer isOrderTaker;
 
 }
