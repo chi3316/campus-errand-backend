@@ -8,6 +8,22 @@
         )
     </insert>
 
+    <update id="update">
+        update orders
+        <set>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="takeTime != null">
+                take_time = #{takeTime},
+            </if>
+            <if test="receiverId != null">
+                receiver_id = #{receiverId},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
     <select id="pageQuery" resultType="com.yolo.pojo.entity.Order">
         select * from orders
         <where>

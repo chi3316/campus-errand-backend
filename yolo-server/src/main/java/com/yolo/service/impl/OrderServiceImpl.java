@@ -19,10 +19,13 @@ import com.yolo.pojo.vo.OrderVO;
 import com.yolo.result.PageResult;
 import com.yolo.service.OrderService;
 import com.yolo.service.UserService;
+import com.yolo.context.BaseContext;
+import lombok.extern.java.Log;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -119,5 +122,18 @@ public class OrderServiceImpl implements OrderService {
             orderVOs.add(orderVO);
         }
         return orderVOs;
+    }
+
+    @Override
+    public void acceptOrder(Long id) {
+        // 从订单表里面查id对应的订单的相关字段
+        Order order = orderMapper.select(id);
+        // 设置订单状态为已帮助
+        order.setStatus(1);
+        // 设置接单时间
+        order.setTakeTime(LocalDateTime.now());
+        // 设置接单人用户id
+        order.setReceiverId(BaseContext.getCurrentId());
+        orderMapper.update(order);
     }
 }

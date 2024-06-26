@@ -25,13 +25,11 @@ public class Order {
     // 用户的地址id
     private Long addressBookId;
 
+    // 接单人的id
     private Long receiverId;
 
     // 快递站id
     private Long expressStationId;
-
-    // 接单人的id
-    private Long ReceiverId;
 
     // 下单时间
     private LocalDateTime orderTime;

@@ -16,4 +16,6 @@ public interface OrderService {
     OrderDetailsVO selectDetails(Long id);
 
     List<OrderVO> list();
+
+    void acceptOrder(Long id);
 }

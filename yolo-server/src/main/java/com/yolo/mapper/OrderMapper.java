@@ -14,6 +14,8 @@ public interface OrderMapper {
 
     void insert(Order order);
 
+    void update(Order order);
+
     @Select("select * from campus_errand.orders where id = #{id}")
     Order select(Long id);
 

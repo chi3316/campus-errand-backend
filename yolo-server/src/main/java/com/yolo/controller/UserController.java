@@ -5,6 +5,7 @@ import com.yolo.pojo.dto.ApplyOrderTakerDTO;
 import com.yolo.pojo.dto.FeedbackDTO;
 import com.yolo.pojo.dto.UserLoginDTO;
 import com.yolo.pojo.dto.UserUpdateDTO;
+import com.yolo.pojo.vo.ReceiverInfoVO;
 import com.yolo.pojo.vo.UserLoginVO;
 import com.yolo.result.Result;
 import com.yolo.service.FeedbackService;
@@ -102,5 +103,18 @@ public class UserController {
         log.info("用户申请接单：{}" , applyOrderTakerDTO);
         userService.apply4OrderTaker(applyOrderTakerDTO);
         return Result.success();
+    }
+
+    @ApiOperation("根据接单人ID获取接单人信息")
+    @GetMapping("/user/getReceiverInfo/{id}")
+    public Result<ReceiverInfoVO> getReceiverInfo(@PathVariable Long id) {
+        log.info("接单人id：{}", id);
+        try {
+            ReceiverInfoVO receiverInfo = userService.getUserInfoById(id);
+            return Result.success(receiverInfo);
+        } catch(Exception e) {
+            log.error("获取接单人信息失败，接单人ID：{}", id, e);
+            return Result.error(MessageConstant.GET_RECEIVER_INFO_FAILED);
+        }
     }
 }
