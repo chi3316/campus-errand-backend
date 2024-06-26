@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yolo.mapper.OrderMapper">
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        insert into orders (number, title, status, user_id, address_book_id, order_time, take_time, finish_time, amount, remark, receiver_id, express_station_id,departure_address,destination_address,info,img_url)
+        insert into orders (number, title, status, user_id, address_book_id, order_time, take_time, finish_time, amount, remark, receiver_id, express_station_id,departure_address,destination_address,info,image_url)
         VALUES(#{number},#{title},#{status},#{userId},#{addressBookId},#{orderTime},#{takeTime},#{finishTime},#{amount},#{remark},#{receiverId},#{expressStationId},#{departureAddress},#{destinationAddress},#{info},#{imageUrl}
         )
     </insert>
