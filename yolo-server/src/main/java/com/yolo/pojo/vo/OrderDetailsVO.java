@@ -43,5 +43,7 @@ public class OrderDetailsVO {
 
     private String avatar;
 
+    // 接单人用户id
+    private Long receiverId;
 
 }

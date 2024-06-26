@@ -12,6 +12,7 @@ import com.yolo.pojo.dto.UserLoginDTO;
 import com.yolo.pojo.dto.UserUpdateDTO;
 import com.yolo.pojo.entity.CheckOrderTaker;
 import com.yolo.pojo.entity.User;
+import com.yolo.pojo.vo.ReceiverInfoVO;
 import com.yolo.pojo.vo.UserLoginVO;
 import com.yolo.properties.JwtProperties;
 import com.yolo.properties.WeChatProperties;
@@ -19,14 +20,12 @@ import com.yolo.service.CheckOrderTakerService;
 import com.yolo.service.UserService;
 import com.yolo.utility.HttpClientUtil;
 import com.yolo.utility.JwtUtil;
-import lombok.extern.java.Log;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -139,5 +138,16 @@ public class UserServiceImpl implements UserService {
         JSONObject jsonObject = JSON.parseObject(json);
         String openid = jsonObject.getString("openid");
         return openid;
+    }
+
+    public ReceiverInfoVO getUserInfoById(Long userId) {
+        User user = getById(userId);
+
+        return ReceiverInfoVO.builder()
+                .id(user.getId())
+                .name(user.getName())
+                .avatar(user.getAvatar())
+                .phone(user.getPhone())
+                .build();
     }
 }
