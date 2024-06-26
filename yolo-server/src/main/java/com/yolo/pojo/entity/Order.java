@@ -57,4 +57,7 @@ public class Order {
 
     // 终点
     private String destinationAddress;
+
+    // 订单的信息的url
+    private String imageUrl;
 }
