@@ -21,10 +21,12 @@ import com.yolo.service.OrderService;
 import com.yolo.service.UserService;
 import com.yolo.context.BaseContext;
 import lombok.extern.java.Log;
+import net.bytebuddy.asm.Advice;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.Console;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -105,6 +107,12 @@ public class OrderServiceImpl implements OrderService {
         // 获取下单用户头像
         User user = userService.getById(order.getUserId());
         orderDetailsVO.setAvatar(user.getAvatar());
+        // 设置发布订单的用户ID
+        orderDetailsVO.setUserId(order.getUserId());
+        // 设置详细信息
+        orderDetailsVO.setInfo(order.getInfo());
+        // 设置图片
+        orderDetailsVO.setImageUrl(order.getImageUrl());
         return orderDetailsVO;
     }
 
@@ -136,4 +144,16 @@ public class OrderServiceImpl implements OrderService {
         order.setReceiverId(BaseContext.getCurrentId());
         orderMapper.update(order);
     }
+
+    @Override
+    public void ackOrder(Long id) {
+        // 从订单表里面查id对应的订单的相关字段
+        Order order = orderMapper.select(id);
+        // 设置订单状态为已完成
+        order.setStatus(2);
+        // 设置完成时间
+        order.setFinishTime(LocalDateTime.now());
+        orderMapper.update(order);
+    }
+
 }

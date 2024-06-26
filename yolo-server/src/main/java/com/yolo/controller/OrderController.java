@@ -76,4 +76,12 @@ public class OrderController {
         orderService.acceptOrder(id);
         return Result.success();
     }
+
+    @ApiOperation("确认订单")
+    @PutMapping("/ackOrder/{id}")
+    public Result<String> ackOrder(@PathVariable Long id) {
+        log.info("订单id: {}", id);
+        orderService.ackOrder(id);
+        return Result.success();
+    }
 }
