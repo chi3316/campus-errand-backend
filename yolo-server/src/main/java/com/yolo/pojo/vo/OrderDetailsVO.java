@@ -46,4 +46,12 @@ public class OrderDetailsVO {
     // 接单人用户id
     private Long receiverId;
 
+    // 发布订单用户id
+    private Long userId;
+
+    // 订单详情信息
+    private String info;
+
+    // 订单详情图片
+    private String imageUrl;
 }

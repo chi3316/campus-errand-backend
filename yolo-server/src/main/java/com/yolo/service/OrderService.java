@@ -18,4 +18,6 @@ public interface OrderService {
     List<OrderVO> list();
 
     void acceptOrder(Long id);
+
+    void ackOrder(Long id);
 }
