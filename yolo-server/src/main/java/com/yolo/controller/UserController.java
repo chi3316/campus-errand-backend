@@ -117,4 +117,16 @@ public class UserController {
             return Result.error(MessageConstant.GET_RECEIVER_INFO_FAILED);
         }
     }
+    @ApiOperation("判断是否有接单资格")
+    @GetMapping("/user/getIsReceiver/{id}")
+    public Result<Integer> getIsReceiver(@PathVariable Long id) {
+        log.info("用户id：{}", id);
+        try {
+            Integer isReceiver = userService.getIsReceiver(id);
+            return Result.success(isReceiver);
+        } catch(Exception e) {
+            log.error("获取用户信息失败，用户ID：{}", id, e);
+            return Result.error(MessageConstant.GET_RECEIVER_INFO_FAILED);
+        }
+    }
 }

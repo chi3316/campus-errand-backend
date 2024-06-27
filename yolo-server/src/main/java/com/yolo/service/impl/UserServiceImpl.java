@@ -150,4 +150,10 @@ public class UserServiceImpl implements UserService {
                 .phone(user.getPhone())
                 .build();
     }
+
+    public Integer getIsReceiver(Long userId) {
+        User user = getById(userId);
+        return user.getIsOrderTaker();
+    }
+
 }
