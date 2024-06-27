@@ -17,4 +17,6 @@ public interface UserService {
     User getById(Long userId);
 
     ReceiverInfoVO getUserInfoById(Long userId);
+
+    Integer getIsReceiver(Long userId);
 }
